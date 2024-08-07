@@ -13,7 +13,10 @@ class InsertQuery
         $classe_atual->table = $tablename;
         return $classe_atual;
     }
-    public static function save(){
-        var_dump('Funcionou' . static::$table);
+    public function save(array $valores =[]){
+        var_dump($valores);
+        die;
+        $sql = "insert into {$this->table} () values";
+        var_dump($sql);
 }
 }
