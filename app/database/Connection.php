@@ -38,6 +38,7 @@ try {
     # Permite a captura e o salvamento de acentuação no banco.
     static::$pdo->exec("SET NAMES 'utf8'");
     // Caso seja bem-sucedidada a conexão retornamos a variável $pdo.
+    echo "Conexão realizada com sucesso";
     return static::$pdo;
 } catch (\PDOException $e) {
     # Lança uma exceção ou uma mensagem de erro.
