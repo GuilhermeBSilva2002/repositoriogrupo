@@ -7,15 +7,16 @@ use PDO;
 
 class Connection
 {
-    #Variável de conexão com o banco de dados.
+    # Variável de conexão com o banco de dados.
     private static $pdo = null;
+    # Método de conexão com banco de dados.
     public static function open()
     {    
-        #Verifica se a conexão já existe e retorna se sim.
+        # Verifica se a conexão já existe e retorna se sim.
         if (static::$pdo) {
             return static::$pdo;
         }
-        #Define as opções de conexão
+        # Define as opções de conexão
         $options = [
             # Configurar modo de tratamento de erros
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
@@ -23,12 +24,13 @@ class Connection
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
             # Desativar emulação de prepared statements
             PDO::ATTR_EMULATE_PREPARES => false,
-            # Desativar conexão persistente (otimização de memória)
-            PDO::ATTR_PERSISTENT => false,
+            # Conexão persistente para melhorar performance. (otimização de memória)
+            PDO::ATTR_PERSISTENT => true,
             # Retornar strings como strings
-            PDO::ATTR_STRINGIFY_FETCHES => false,
+            PDO::ATTR_STRINGIFY_FETCHES => true,
            
         ];
+ # Tentativa de estabelecer uma conexão com o banco de dados com tratamento de exceções.
 try {
     $dsn = 'pgsql:host=localhost;port=5432;dbname=senac';
     // Caso a conexão com banco de dados não exista criamos, uma nova conexão.
