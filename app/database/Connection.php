@@ -10,8 +10,8 @@ class Connection
     # Variável de conexão com o banco de dados.
     private static $pdo = null;
     # Método de conexão com banco de dados.
-    public static function open()
-    {    
+    public static function open(): PDO
+    {
         # Verifica se a conexão já existe e retorna se sim.
         if (static::$pdo) {
             return static::$pdo;
@@ -28,22 +28,20 @@ class Connection
             PDO::ATTR_PERSISTENT => true,
             # Retornar strings como strings
             PDO::ATTR_STRINGIFY_FETCHES => true,
-           
-        ];
- # Tentativa de estabelecer uma conexão com o banco de dados com tratamento de exceções.
-try {
-    $dsn = 'pgsql:host=localhost;port=5432;dbname=senac';
-    // Caso a conexão com banco de dados não exista criamos, uma nova conexão.
-    static::$pdo = new PDO ($dsn, 'gbsilva2002', 'guilherme10', $options);
-    # Permite a captura e o salvamento de acentuação no banco.
-    static::$pdo->exec("SET NAMES 'utf8'");
-    // Caso seja bem-sucedidada a conexão retornamos a variável $pdo.
-    echo "Conexão realizada com sucesso";
-    return static::$pdo;
-} catch (\PDOException $e) {
-    # Lança uma exceção ou uma mensagem de erro.
-    throw new \PDOException("Restrição: " . $e->getMessage(), 1);
-}
-    }
 
+        ];
+        # Tentativa de estabelecer uma conexão com o banco de dados com tratamento de exceções.
+        try {
+            $dsn = 'pgsql:host=localhost;port=5432;dbname=senac';
+            // Caso a conexão com banco de dados não exista criamos, uma nova conexão.
+            static::$pdo = new PDO($dsn, 'gbsilva2002', 'guilherme10', $options);
+            # Permite a captura e o salvamento de acentuação no banco.
+            static::$pdo->exec("SET NAMES 'utf8'");
+            // Caso seja bem-sucedidada a conexão retornamos a variável $pdo.
+            return static::$pdo;
+        } catch (\PDOException $e) {
+            # Lança uma exceção ou uma mensagem de erro.
+            throw new \PDOException("Restrição: " . $e->getMessage(), 1);
+        }
+    }
 }
