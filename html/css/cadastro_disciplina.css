@@ -1,0 +1,12 @@
+.checkboxes label {
+    display: inline-table;
+    padding-right: 1px;
+    white-space: nowrap;
+  }
+  .checkboxes input {
+    vertical-align: middle;
+    white-space: normal;
+  }
+  .checkboxes label span {
+    vertical-align: middle;
+  }

@@ -52,3 +52,7 @@ $FieldsAndValuesAluno4 = [
 ];
 
 InsertQuery::table('aluno')->save($FieldsAndValuesAluno4);
+
+if (true) {
+        echo "Dados Inseridos";
+}
