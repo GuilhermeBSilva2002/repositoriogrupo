@@ -65,12 +65,12 @@
     <div class="form-container">
         <h2>Cadastro de Disciplina</h2>
         <form action="processa_cadastro_disciplina.php" method="POST">
-            <label for="nomeDisciplina">Escolha sua disciplina desejada: </label>
-            <select id="disciplina" name="disciplina" required>
+            <label for="Disciplina">Escolha sua disciplina desejada: </label>
+            <select id="Disciplina" name="Disciplina" required>
                 <option value="">Selecione uma disciplina</option>
-                <option value="programador_de_sistemas">Programador de Sistemas</option>
-                <option value="manicure">Manicure</option>
-                <option value="pediatra">Pediatra</option>
+                <option value="Programador">Programador de Sistemas</option>
+                <option value="Manicure">Manicure</option>
+                <option value="Pediatra">Pediatra</option>
             </select>
             <div class="checkboxes" style="display: flex; align-items: center;">
                 <input type="checkbox" style="margin-right: 8px;">
