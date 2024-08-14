@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Professor</title>
+    <title>Cadastro de Turma</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -47,7 +47,7 @@
         .form-container button {
             width: 100%;
             padding: 10px;
-            background-color: green;
+            background-color: purple;
             border: none;
             border-radius: 3px;
             color: #fff;
@@ -56,31 +56,29 @@
         }
 
         .form-container button:hover {
-            background-color: darkgreen;
+            background-color: darkmagenta;
         }
     </style>
 </head>
 
 <body>
     <div class="form-container">
-        <h2>Cadastro de Professor</h2>
-        <form id=formProfessor>
-            <label for="nome_professor">Nome do Professor: </label>
-            <input type="text" id="nome_professor" name="nome_professor" required>
+        <h2>Cadastro de Turma</h2>
+        <form id="formTurma">
+            <label for="qtd_alunos">Quantidade de Alunos: </label>
+            <input type="number" id="qtd_alunos" name="qtd_alunos" required>
 
-            <label for="cpf_professor">CPF: </label>
-            <input type="text" id="cpf_professor" name="cpf_professor" required>
 
-            <label for="rg_professor">RG: </label>
-            <input type="text" id="rg_professor" name="rg_professor" required>
+            <label for="data_inicio">Data de Inicio: </label>
+            <input type="date" id="data_inicio" name="data_inicio" required>
 
-            <label for="data_nascimento_professor">Data de Nascimento: </label>
-            <input type="date" id="data_nascimento_professor" name="data_nascimento_professor" required>
+            <label for="data_fim">Data de Encerramento: </label>
+            <input type="date" id="data_fim" name="data_fim" required>
 
-            <button type="button" id="btnsalvarprofessor"> Cadastrar</button>
+            <button type="button" id="btnsalvarTurma"> Cadastrar</button>
         </form>
     </div>
-    <script src="/js/cadastro_professor.js"></script>
+    <script src="/js/cadastro_turma.js"></script>
 </body>
 
 </html>

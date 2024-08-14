@@ -64,9 +64,9 @@
 <body>
     <div class="form-container">
         <h2>Cadastro de Aluno</h2>
-        <form action="processa_cadastro_aluno.php" method="POST">
-            <label for="nomeAluno">Nome do Aluno: </label>
-            <input type="text" id="nomeAluno" name="nomeAluno" required>
+        <form id="form">
+            <label for="nome">Nome do Aluno: </label>
+            <input type="text" id="nome" name="nome" required>
 
             <label for="cpf">CPF: </label>
             <input type="text" id="cpf" name="cpf" required>
@@ -77,9 +77,10 @@
             <label for="data_nascimento">Data de Nascimento: </label>
             <input type="date" id="data_nascimento" name="data_nascimento" required>
 
-            <button type="submit"> Cadastrar</button>
+            <button type="button" id="btnsalvar"> Cadastrar</button>
         </form>
     </div>
+    <script src="/js/cadastro_aluno.js"></script>
 </body>
 
 </html>

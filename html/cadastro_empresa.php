@@ -64,12 +64,12 @@
 <body>
     <div class="form-container">
         <h2>Cadastro de Empresa</h2>
-        <form action="processa_cadastro_empresa.php" method="POST">
-            <label for="nomeEmpresa">Nome Fantasia da Empresa: </label>
-            <input type="text" id="nomeEmpresa" name="nomeEmpresa" required>
+        <form id="formEmpresa">
+            <label for="nome_empresa">Nome Fantasia da Empresa: </label>
+            <input type="text" id="nome_empresa" name="nome_empresa" required>
 
-            <label for="cnpj_empresa">CNPJ: </label>
-            <input type="text" id="cnpj_empresa" name="cnpj_empresa" required>
+            <label for="cnpj">CNPJ: </label>
+            <input type="text" id="cnpj" name="cnpj" required>
 
             <label for="inscricao_estadual">Inscrição Estadual: </label>
             <input type="number" id="inscricao_estadual" name="inscricao_estadual" required>
@@ -77,9 +77,10 @@
             <label for="data_de_fundacao">Data de Fundação: </label>
             <input type="date" id="data_de_fundacao" name="data_de_fundacao" required>
 
-            <button type="submit"> Cadastrar</button>
+            <button type="button" id="btnsalvarEmpresa"> Cadastrar</button>
         </form>
     </div>
+    <script src="/js/cadastro_empresa.js"></script>
 </body>
 
 </html>

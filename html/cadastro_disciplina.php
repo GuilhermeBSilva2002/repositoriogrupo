@@ -64,22 +64,23 @@
 <body>
     <div class="form-container">
         <h2>Cadastro de Disciplina</h2>
-        <form action="processa_cadastro_disciplina.php" method="POST">
+        <form id= "formDisciplina">
             <label for="Disciplina">Escolha sua disciplina desejada: </label>
-            <select id="Disciplina" name="Disciplina" required>
+            <select id="nome_disciplina" name="disciplina" required>
                 <option value="">Selecione uma disciplina</option>
                 <option value="Programador">Programador de Sistemas</option>
                 <option value="Manicure">Manicure</option>
                 <option value="Pediatra">Pediatra</option>
             </select>
             <div class="checkboxes" style="display: flex; align-items: center;">
-                <input type="checkbox" style="margin-right: 8px;">
+                <input type="checkbox" id="confirma_disciplina" value="true" name="ativo" margin-right: 8px; required>
                 <label >Confirme a disciplina</label>
             </div>
-            <button type="submit"> Cadastrar</button>
+            <button type="button" id="btnsalvarDisciplina"> Cadastrar</button>
         </form>
     </div>
+    <script src="/js/cadastro_disciplina.js"></script>
 </body>
-<link rel="stylesheet" href="/css/cadastro_disciplina.css">
+
 
 </html>
