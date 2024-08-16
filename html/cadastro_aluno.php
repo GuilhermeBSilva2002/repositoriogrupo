@@ -23,6 +23,7 @@
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             width: 300px;
+            position: relative;
         }
 
         .form-container h2 {
@@ -58,6 +59,27 @@
         .form-container button:hover {
             background-color: darkred;
         }
+
+        #confirmationBalloon {
+            position: absolute;
+            top: -50px;
+            left: 0;
+            background-color: green;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            display: none;
+            z-index: 1;
+        }
+
+        .hidden {
+            display: none;
+        }
+        
+        .show {
+            display: block;
+
+        }
     </style>
 </head>
 
@@ -78,6 +100,7 @@
             <input type="date" id="data_nascimento" name="data_nascimento" required>
 
             <button type="button" id="btnsalvar"> Cadastrar</button>
+            <div id="confirmationBalloon" class="hidden"> Cadastrado com Sucesso! </div>
         </form>
     </div>
     <script src="/js/cadastro_aluno.js"></script>

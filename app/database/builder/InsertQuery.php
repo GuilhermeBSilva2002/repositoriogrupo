@@ -7,7 +7,6 @@ use app\database\Connection;
 class InsertQuery
 {
     private static $table;
-
     public static function table(string $tablename = '')
     {
 
