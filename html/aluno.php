@@ -1,3 +1,14 @@
+<?php
+$id = '';
+$acao = '';
+if (isset($_GET['id']) and !empty($_GET['id'])) {
+    $id = $_GET['id'];
+    $acao = 'e';
+} else {
+    $id = '';
+    $acao = 'c';
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -16,9 +27,8 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="/bem_vindo_aluno.php">Início</a></li>
-                        <li class="breadcrumb-item"><a href="/lista_aluno.php">Lista de Alunos</a></li>
+                        <li class="breadcrumb-item"><a href="/lista_aluno.php">Lista de aluno</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Cadastro e edição de alunos</li>
-                        <li class="breadcrumb-item" ><a href="/bootstrap_aluno.php">Cadastro de Aluno</a></li>
                     </ol>
                 </nav>
             </div>
@@ -31,30 +41,33 @@
                     </div>
                     <div class="card-body">
                         <div class="col-12">
-                            <div class="alert alert-warning" role="alert">
+                            <div class="alert alert-warning" role="alert" id="mensagem">
                                 Todos os campos sinalizado com
                                 <span class="text-danger">*</span> são de preenchimento obrigatórios
                             </div>
                         </div>
                         <form id="form">
+                            <input type="hidden" name="id" id="id" value="<?php echo $id; ?>">
+                            <input type="hidden" name="acao" id="acao" value="<?php echo $acao; ?>">
                             <div class="form-floating mb-3">
                                 <input
                                     type="text"
                                     class="form-control"
                                     id="nome"
                                     name="nome"
-                                    placeholder="">
+                                    placeholder=""
+                                    required>
                                 <label for="floatingInput">Digite por favor seu nome *</label>
                             </div>
                         </form>
                     </div>
                     <div class="card-footer">
                         <div class="btn-group" role="group" aria-label="Basic example">
-                            <a href="/lista_aluno.php" class="btn btn-warning">
+                            <a href="/lista_aluno.php" class="btn btn-outline-warning">
                                 <i class="fas fa-chevron-left"></i>
                                 Voltar
                             </a>
-                            <button type="button" class="btn btn-success">
+                            <button type="button" class="btn btn-outline-success" id="salvar">
                                 <i class="fas fa-save"></i>
                                 Salvar
                             </button>
@@ -66,6 +79,7 @@
     </div>
     <script src="/js/bootstrap.js"></script>
     <script src="/js/all.min.js"></script>
+    <script src="/js/aluno.js"></script>
 </body>
 
 </html>
