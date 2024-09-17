@@ -1,5 +1,4 @@
 {
-   
     "autoload": {
         "psr-4": {
             "app\\": "app/"
@@ -7,6 +6,7 @@
     },
     "require": {
         "slim/slim": "^4.14",
-        "slim/twig-view": "^3.4"
+        "slim/twig-view": "^3.4",
+        "slim/psr7": "^1.7"
     }
 }
