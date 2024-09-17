@@ -26,9 +26,9 @@
                     {% for item in disciplinas %}
                     <tr>
                         <td>{{ item.id }}</td>
-                        <td>{{ item.nome }}</td>
+                        <td>{{ item.nome_disciplina }}</td>
                         <td>
-                            {% if ( item.ativo) %}
+                            {% if ( item.confirma_disciplina) %}
                             <span>Ativo</span>
                             {% else %}
                             <span>Inativo</span>
