@@ -14,6 +14,7 @@ const table = new DataTable('#tabela', {
 });
 function Delete(id) {
     document.getElementById('id').value = id;
+    $('#tr' + id).remove();
     const form = document.getElementById('form');
     const formData = new FormData(form);
     const opt = {
@@ -23,7 +24,6 @@ function Delete(id) {
     const response = fetch('/disciplina/delete', opt);
     const json = response.json();
     if (json.status) {
-        $('#tr' + id).remove();
     }
 
 }

@@ -2,20 +2,23 @@
 
 namespace app\database\builder;
 
+use app\database\Connection;
+
 class DeleteQuery
 {
-    private static $tabela;
-    private $where = [];
-    private $binds = [];
-    public static function table(string $table): self
+    public string $table;
+    public array $where = [];
+    public array $binds = [];
+
+    public static function table(string $table)
     {
         $self = new self;
-        $self->tabela = $table;
+        $self->table = $table;
         return $self;
     }
-    public function where(string $field, string $operator, string|int $value, ?string $logic = null): self
+
+    public function where(string $field, string $operator, string|int $value, ?string $logic = null)
     {
-        $placeHolder = '';
         $placeHolder = $field;
         if (str_contains($placeHolder, '.')) {
             $placeHolder = substr($field, strpos($field, '.') + 1);
@@ -24,8 +27,29 @@ class DeleteQuery
         $this->binds[$placeHolder] = $value;
         return $this;
     }
-    public function delete(): bool
+
+    private function createQuery()
     {
-        return true;
+        if (!$this->table) {
+            throw new \Exception("A consulta precisa invocar o método table.");
+        }
+
+        $query = "DELETE FROM {$this->table}";
+        if (count($this->where) > 0) {
+            $query .= ' WHERE ' . implode(' ', $this->where);
+        }
+        return $query;
+    }
+
+    public function delete()
+    {
+        $query = $this->createQuery();
+        try {
+            $connection = Connection::open();
+            $prepare = $connection->prepare($query);
+            return $prepare->execute($this->binds ?? []);
+        } catch (\PDOException $e) {
+            throw new \Exception("Restrição: {$e->getMessage()}, SQL: " . $query);
+        }
     }
 }
