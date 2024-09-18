@@ -12,3 +12,18 @@ const table = new DataTable('#tabela', {
         url: '/js/pt-BR.json'
     },
 });
+function Delete(id) {
+    document.getElementById('id').value = id;
+    const form = document.getElementById('form');
+    const formData = new FormData(form);
+    const opt = {
+        method: 'POST',
+        body: formData
+    }
+    const response = fetch('/disciplina/delete', opt);
+    const json = response.json();
+    if (json.status) {
+        $('#tr' + id).remove();
+    }
+
+}
