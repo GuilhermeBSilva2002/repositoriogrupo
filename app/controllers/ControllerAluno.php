@@ -3,6 +3,8 @@
 use app\database\builder\InsertQuery;
 use app\database\builder\SelectQuery;
 use app\database\builder\UpdateQuery;
+use app\database\builder\DeleteQuery;
+
 
 require __DIR__ . '/../vendor/autoload.php';
 
