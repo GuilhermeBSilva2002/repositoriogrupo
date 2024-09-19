@@ -3,9 +3,12 @@
 use app\controllers\ControllerCliente;
 use app\controllers\ControllerDisciplina;
 use app\controllers\ControllerHome;
+use app\controllers\ControllerLogin;
 use Slim\Routing\RouteCollectorProxy;
 
 $app->get('/', ControllerHome::class . ':home');
+
+$app->get('/login', ControllerLogin::class . ':login');
 
 $app->group('/cliente', function (RouteCollectorProxy $group) {
     $group->get('/cadastro', ControllerCliente::class . ':cadastro');

@@ -1,13 +1,5 @@
-{% extends "main.html" %}
+{% extends "main_login.html" %}
 {% block main %}
-<div class="col-12">
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/">Início</a></li>
-            <li class="breadcrumb-item"><a href="/disciplina/lista">Lista de Disciplinas</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Cadastro e Alteração</li>
-        </ol>
-    </nav>
 </div>
 <div class="col-12">
     <form id="form">
@@ -17,7 +9,6 @@
             </div>
             <div class="card-body">
                 <div class="form-floating mb-3">
-                    <input type="hidden" id="id" name="id" value="{{id}}">
                     <input type="text" class="form-control" id="nome" name="nome" placeholder="name@example.com">
                     <label for="nome">Nome</label>
                 </div>
