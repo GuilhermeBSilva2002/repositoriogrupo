@@ -1,30 +1,35 @@
 <?php
-// cadastrar.php
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+header('Content-Type: application/json');
+
+// Conectar ao banco de dados PostgreSQL
+$host = "localhost"; // ou o endereço do seu servidor
+$dbname = "aulasenac"; // nome do seu banco de dados
+$user = "gbsilva"; // usuário do banco de dados
+$password = "guilherme10"; // senha do banco de dados
+
+try {
+    $conn = new PDO("pgsql:host=$host;dbname=$dbname", $user, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    // Capturar dados do POST
     $nome = $_POST['nome'];
     $login = $_POST['login'];
     $email = $_POST['email'];
-    $senha = password_hash($_POST['senha'], PASSWORD_BCRYPT); // Criptografando a senha
+    $senha = password_hash($_POST['senha'], PASSWORD_BCRYPT); // Criptografar a senha
 
-    // Conectar ao banco de dados
-    $conn = new mysqli('localhost', 'usuario', 'senha', 'banco_de_dados');
-
-    // Verificando a conexão
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
-    // Preparar e executar a inserção
-    $stmt = $conn->prepare("INSERT INTO usuario (nome, login, email, senha) VALUES (?, ?, ?, ?)");
-    $stmt->bind_param("ssss", $nome, $login, $email, $senha);
+    // Preparar e executar a consulta
+    $stmt = $conn->prepare("INSERT INTO usuario (nome, login, email, senha) VALUES (:nome, :login, :email, :senha)");
+    $stmt->bindParam(':nome', $nome);
+    $stmt->bindParam(':login', $login);
+    $stmt->bindParam(':email', $email);
+    $stmt->bindParam(':senha', $senha);
 
     if ($stmt->execute()) {
         echo json_encode(['status' => 'success']);
     } else {
-        echo json_encode(['status' => 'error', 'message' => 'Erro ao cadastrar']);
+        echo json_encode(['status' => 'error', 'message' => 'Erro ao cadastrar.']);
     }
 
-    $stmt->close();
-    $conn->close();
+} catch (PDOException $e) {
+    echo json_encode(['status' => 'error', 'message' => $e->getMessage()]);
 }
-?>

@@ -42,10 +42,7 @@
             <label for="senha">Senha</label>
             <input type="password" class="form-control" id="senha" placeholder="Sua Senha" required>
         </div>
-        <div class="form-group form-check">
-            <input type="checkbox" class="form-check-input" id="confirmCadastro" required>
-            <label class="form-check-label" for="confirmCadastro">Confirmar Cadastro</label>
-        </div>
+
         <button type="submit" class="btn btn-primary">Login</button>
         <button type="button" class="btn btn-link" data-toggle="modal" data-target="#esqueceuSenhaModal">Esqueceu sua senha?</button>
         <button type="button" class="btn btn-link" data-toggle="modal" data-target="#cadastroModal">Cadastro</button>
@@ -108,6 +105,10 @@
                         <label for="senhaCadastro">Senha</label>
                         <input type="password" class="form-control" id="senhaCadastro" required>
                     </div>
+                    <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="confirmCadastro" required>
+                        <label class="form-check-label" for="confirmCadastro">Confirmar Cadastro</label>
+                    </div>
                 </form>
             </div>
             <div class="modal-footer">
@@ -135,7 +136,7 @@
         }
     };
 
-    document.getElementById('loginForm').onsubmit = function(event) {
+    document.getElementById('cadastroForm').onsubmit = function(event) {
     const confirmCadastro = document.getElementById('confirmCadastro');
     if (!confirmCadastro.checked) {
         alert('Você deve confirmar o cadastro.');
@@ -148,6 +149,8 @@ document.getElementById('confirmarCadastro').onclick = function() {
         const login = document.getElementById('loginCadastro').value;
         const email = document.getElementById('emailCadastro').value;
         const senha = document.getElementById('senhaCadastro').value;
+        const confirmCadastro = document.getElementById('confirmCadastro').value;
+
         fetch('cadastrar.php', {
         method: 'POST',
         headers: {
