@@ -12,5 +12,7 @@ define('DIR_VIEW', ROOT . '/app/views');
 
 define('EXT_VIEWS', '.html');
 
+define('HOME', 'http://localhost');
+
 
 
