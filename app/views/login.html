@@ -35,12 +35,8 @@
             <input type="text" class="form-control" id="nome" placeholder="Seu Nome" required>
         </div>
         <div class="form-group">
-            <label for="loginLogin">Login</label>
-            <input type="text" class="form-control" id="login" placeholder="Seu Login" required>
-        </div>
-        <div class="form-group">
-            <label for="loginEmail">Email</label>
-            <input type="text" class="form-control" id="email" placeholder="Seu Email" required>
+            <label for="loginLogin">Login/Email</label>
+            <input type="text" class="form-control" id="login" placeholder="Seu Login/Email" required>
         </div>
         <div class="form-group">
             <label for="senha">Senha</label>
@@ -152,14 +148,36 @@ document.getElementById('confirmarCadastro').onclick = function() {
         const login = document.getElementById('loginCadastro').value;
         const email = document.getElementById('emailCadastro').value;
         const senha = document.getElementById('senhaCadastro').value;
-
+        fetch('cadastrar.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams({
+            nome: nome,
+            login: login,
+            email: email,
+            senha: senha
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'success') {
+            alert('Cadastro realizado com sucesso!');
+            // Fechar o modal após o cadastro
+            $('#cadastroModal').modal('hide');
+        } else {
+            alert('Erro: ' + data.message);
+        }
+    })
+    .catch(error => console.error('Erro:', error));
+};
         // Obter valores dos campos do formulário principal
         const nomePrincipal = document.getElementById('nome').value;
         const loginPrincipal = document.getElementById('login').value;
-        const emailPrincipal = document.getElementById('email').value;
         const senhaPrincipal = document.getElementById('senha').value;
 
-    };
+    
     
    
 
