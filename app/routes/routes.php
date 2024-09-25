@@ -7,7 +7,7 @@ use app\controllers\ControllerLogin;
 use app\middlewares\Middleware;
 use Slim\Routing\RouteCollectorProxy;
 
-$app->get('/', ControllerHome::class . ':home')->add(Middleware::route());
+$app->get('/inicio', ControllerHome::class . ':home')->add(Middleware::route());
 
 $app->get('/login', ControllerLogin::class . ':login');
 

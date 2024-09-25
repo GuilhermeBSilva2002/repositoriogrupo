@@ -4,7 +4,6 @@ namespace app\controllers;
 
 use app\database\builder\SelectQuery;
 use app\database\builder\DeleteQuery;
-use app\database\builder\InsertQuery;
 
 class ControllerDisciplina extends Base
 {

@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <!-- Alterado para a versão completa do jQuery -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <style>
@@ -16,6 +18,7 @@
             height: 100vh;
             background-color: #f8f9fa;
         }
+
         .container {
             max-width: 400px;
             background: white;
@@ -25,15 +28,13 @@
         }
     </style>
 </head>
+
 <body>
-    <div class="alert-container" style="position: absolute; top: 20px; left: 50%; transform: translateX(-50%); z-index: 1050;"></div>
+    <div class="alert-container"
+        style="position: absolute; top: 20px; left: 50%; transform: translateX(-50%); z-index: 1050;"></div>
     <div class="container">
         <h2>Login</h2>
         <form id="loginForm">
-            <div class="form-group">
-                <label for="nome">Nome</label>
-                <input type="text" class="form-control" id="nome" placeholder="Seu Nome" required>
-            </div>
             <div class="form-group">
                 <label for="loginLogin">Login/Email</label>
                 <input type="text" class="form-control" id="login" placeholder="Seu Login/Email" required>
@@ -44,12 +45,51 @@
             </div>
 
             <button type="submit" class="btn btn-primary">Login</button>
-            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#esqueceuSenhaModal">Esqueceu sua senha?</button>
-            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#cadastroModal">Cadastro</button>
+            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#esqueceuSenhaModal">Esqueceu
+                sua senha?</button>
+            <button type="button" class="btn btn-link" data-toggle="modal"
+                data-target="#cadastroModal">Cadastro</button>
         </form>
     </div>
 
-    <div class="modal fade" id="cadastroModal" tabindex="-1" role="dialog" aria-labelledby="cadastroModalLabel" aria-hidden="true">
+    <!--MODAL ESQUECEU SENHA!!-->
+    <div class="modal fade" id="esqueceuSenhaModal" tabindex="-1" aria-labelledby="esqueceuSenhaModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="esqueceuSenhaModalLabel">Redefinir Senha</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-warning d-none" id="warningAlert" role="alert">
+                        As senhas não coincidem!
+                    </div>
+                    <div class="alert alert-success d-none" id="successAlert" role="alert">
+                        Senha redefinida com sucesso!
+                    </div>
+                    <div class="mb-3">
+                        <label for="novaSenha" class="form-label">Digite sua nova senha</label>
+                        <input type="password" class="form-control" id="novaSenha" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="confirmaSenha" class="form-label">Confirme sua senha</label>
+                        <input type="password" class="form-control" id="confirmaSenha" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-primary" id="salvarSenha">Salvar Senha</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--MODAL CADASTRO!!-->
+    <div class="modal fade" id="cadastroModal" tabindex="-1" role="dialog" aria-labelledby="cadastroModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -76,10 +116,6 @@
                             <label for="senhaCadastro">Senha</label>
                             <input type="password" class="form-control" id="senhaCadastro" required>
                         </div>
-                        <div class="form-group form-check">
-                            <input type="checkbox" class="form-check-input" id="confirmCadastro" required>
-                            <label class="form-check-label" for="confirmCadastro">Confirmar Cadastro</label>
-                        </div>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -91,17 +127,46 @@
     </div>
 
     <script>
-        document.getElementById('confirmarCadastro').onclick = function() {
+        function showAlert(message, type) {
+            const alertContainer = document.querySelector('.alert-container');
+            const alert = document.createElement('div');
+            alert.className = `alert alert-${type}`;
+            alert.role = 'alert';
+            alert.textContent = message;
+            alertContainer.appendChild(alert);
+            setTimeout(() => {
+                alert.remove();
+            }, 1000);
+        }
+
+        document.getElementById('salvarSenha').onclick = function () {
+            const novaSenha = document.getElementById('novaSenha').value;
+            const confirmaSenha = document.getElementById('confirmaSenha').value;
+
+            if (novaSenha === confirmaSenha && novaSenha !== "") {
+                $('#successAlert').removeClass('d-none');
+                setTimeout(() => {
+                    $('#successAlert').addClass('d-none');
+                    $('#esqueceuSenhaModal').modal('hide'); // Fecha o modal após o alerta
+                }, 1000);
+            } else {
+                $('#warningAlert').removeClass('d-none');
+            }
+        };
+
+        // Mantém o modal aberto se as senhas não coincidirem
+        $('#esqueceuSenhaModal').on('hide.bs.modal', function (e) {
+            const warningVisible = !$('#warningAlert').hasClass('d-none');
+            if (warningVisible) {
+                e.preventDefault(); // Cancela o fechamento do modal
+            }
+        });
+
+        document.getElementById('confirmarCadastro').onclick = function () {
             const nome = document.getElementById('nomeCadastro').value;
             const login = document.getElementById('loginCadastro').value;
             const email = document.getElementById('emailCadastro').value;
             const senha = document.getElementById('senhaCadastro').value;
-            const confirmCadastro = document.getElementById('confirmCadastro');
-
-            if (!confirmCadastro.checked) {
-                showAlert('Você deve confirmar o cadastro.', 'warning');
-                return; // Impede o envio do formulário
-            }
 
             // Prossegue com o cadastro
             fetch('cadastrar.php', {
@@ -116,36 +181,56 @@
                     senha: senha
                 })
             })
-            .then(response => response.json())
-            .then(data => {
-                if (data.status === 'success') {
-                    showAlert('Cadastro realizado com sucesso!', 'success');
-                    $('#cadastroModal').modal('hide'); // Fechar o modal
-                } else {
-                    showAlert('Erro: ' + data.message, 'warning');
-                }
-            })
-            .catch(error => {
-                showAlert('Erro: ' + error.message, 'danger');
-            });
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        showAlert('Cadastro realizado com sucesso!', 'success');
+                        $('#cadastroModal').modal('hide'); // Fecha o modal
+                    } else {
+                        showAlert('Erro: ' + data.message, 'warning');
+                    }
+                })
+                .catch(error => {
+                    showAlert('Erro: ' + error.message, 'danger');
+                });
         };
 
-        function showAlert(message, type) {
-            const alertContainer = document.querySelector('.alert-container');
-            
-            // Cria o alerta
-            const alert = document.createElement('div');
-            alert.className = `alert alert-${type}`;
-            alert.role = 'alert';
-            alert.textContent = message;
-            alertContainer.appendChild(alert);
-            
-            // Oculta o alerta após 2 segundos
-            setTimeout(() => {
-                alert.remove(); // Remove o alerta
-            }, 2000);
-        }
-    </script>
+        document.getElementById('loginForm').onsubmit = function (event) {
+            event.preventDefault(); // Impede o envio padrão do formulário
 
+            const login = document.getElementById('login').value;
+            const senha = document.getElementById('senha').value;
+
+            // Envia uma requisição ao servidor para verificar as credenciais
+            fetch('login.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: new URLSearchParams({
+                    login: login,
+                    senha: senha
+                })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        // Armazena a autenticação
+                        localStorage.setItem('authenticated', 'true');
+                        // Redireciona para uma página de sucesso
+                        window.location.href = '/inicio';
+                    } else {
+                        showAlert('Login ou senha inválidos.', 'danger');
+                    }
+                })
+                .catch(error => {
+                    showAlert('Erro: ' + error.message, 'danger');
+                });
+        };
+
+       
+
+    </script>
 </body>
+
 </html>
