@@ -3,8 +3,8 @@ header('Content-Type: application/json');
 
 // Conectar ao banco de dados PostgreSQL
 $host = "localhost"; // ou o endereço do seu servidor
-$dbname = "aulasenac"; // nome do seu banco de dados
-$user = "gbsilva"; // usuário do banco de dados
+$dbname = "casa"; // nome do seu banco de dados
+$user = "gbsilva2002"; // usuário do banco de dados
 $password = "guilherme10"; // senha do banco de dados
 
 try {

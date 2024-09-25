@@ -31,10 +31,6 @@
         <h2>Login</h2>
         <form id="loginForm">
             <div class="form-group">
-                <label for="nome">Nome</label>
-                <input type="text" class="form-control" id="nome" placeholder="Seu Nome" required>
-            </div>
-            <div class="form-group">
                 <label for="loginLogin">Login/Email</label>
                 <input type="text" class="form-control" id="login" placeholder="Seu Login/Email" required>
             </div>
@@ -145,6 +141,38 @@
                 alert.remove(); // Remove o alerta
             }, 2000);
         }
+
+        document.getElementById('loginForm').onsubmit = function(event) {
+    event.preventDefault(); // Impede o envio padrão do formulário
+
+    const login = document.getElementById('login').value;
+    const senha = document.getElementById('senha').value;
+
+    // Envia uma requisição ao servidor para verificar as credenciais
+    fetch('login.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams({
+            login: login,
+            senha: senha
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'success') {
+            // Redireciona para uma página de sucesso
+            window.location.href = 'teste.php';
+        } else {
+            showAlert('Login ou senha inválidos.', 'danger');
+        }
+    })
+    .catch(error => {
+        showAlert('Erro: ' + error.message, 'danger');
+    });
+};
+
     </script>
 
 </body>
