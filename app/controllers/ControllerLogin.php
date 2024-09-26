@@ -2,13 +2,12 @@
 
 namespace app\controllers;
 
-
 class ControllerLogin extends Base
 {
-    public function login($request, $response)
+    public function login($request, $response, $args)
     {
         $TempleteData = [
-            'titulo' => 'Tela de Login'
+            'titulo' => 'Autenticação'
         ];
         return $this->getTwig()
             ->render($response, $this->setView('login'), $TempleteData)
