@@ -32,17 +32,17 @@ class SelectQuery
             throw new \Exception("Restrição: {$e->getMessage()}");
         }
     }
-    public static function select(string $fields = '*')
+    public  function select(string $fields = '*')
+    {
+        $this->fields = $fields;
+        return $this;
+    }
+    public static function from(string $table)
     {
         $self = new self;
-        $self->fields = $fields;
+        $self->table = '';
+        $self->table = $table;
         return $self;
-    }
-    public function from(string $table)
-    {
-        $this->table = '';
-        $this->table = $table;
-        return $this;
     }
     public function where(string $field, string $operator, string|int $value, ?string $logic = null)
     {

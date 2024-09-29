@@ -32,9 +32,9 @@ class Connection
         ];
         # Tentativa de estabelecer uma conexão com o banco de dados com tratamento de exceções.
         try {
-            $dsn = 'pgsql:host=localhost;port=5432;dbname=casa';
+            $dsn = 'pgsql:host=localhost;port=5432;dbname=aulasenac';
             // Caso a conexão com banco de dados não exista criamos, uma nova conexão.
-            static::$pdo = new PDO($dsn, 'gbsilva2002', 'guilherme10', $options);
+            static::$pdo = new PDO($dsn, 'gbsilva', 'guilherme10', $options);
             # Permite a captura e o salvamento de acentuação no banco.
             static::$pdo->exec("SET NAMES 'utf8'");
             // Caso seja bem-sucedidada a conexão retornamos a variável $pdo.

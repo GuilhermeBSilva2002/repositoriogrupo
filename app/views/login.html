@@ -30,18 +30,18 @@
 </head>
 
 <body>
-    <div class="alert-container"
-        style="position: absolute; top: 20px; left: 50%; transform: translateX(-50%); z-index: 1050;"></div>
-    <div class="container">
-        <h2>Login</h2>
-        <form id="loginForm">
+    <form id="form">
+        <div class="alert-container"
+            style="position: absolute; top: 20px; left: 50%; transform: translateX(-50%); z-index: 1050;"></div>
+        <div class="container">
+            <h2>Login</h2>
             <div class="form-group">
                 <label for="loginLogin">Login/Email</label>
-                <input type="text" class="form-control" id="login" placeholder="Seu Login/Email" required>
+                <input type="text" class="form-control" id="login" placeholder="Seu Login/Email" name="login" required>
             </div>
             <div class="form-group">
                 <label for="senha">Senha</label>
-                <input type="password" class="form-control" id="senha" placeholder="Sua Senha" required>
+                <input type="password" class="form-control" id="senha" placeholder="Sua Senha" name="senha" required>
             </div>
 
             <button type="submit" class="btn btn-primary">Login</button>
@@ -49,190 +49,83 @@
                 sua senha?</button>
             <button type="button" class="btn btn-link" data-toggle="modal"
                 data-target="#cadastroModal">Cadastro</button>
-        </form>
-    </div>
 
-    <!--MODAL ESQUECEU SENHA!!-->
-    <div class="modal fade" id="esqueceuSenhaModal" tabindex="-1" aria-labelledby="esqueceuSenhaModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="esqueceuSenhaModalLabel">Redefinir Senha</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="alert alert-warning d-none" id="warningAlert" role="alert">
-                        As senhas não coincidem!
+        </div>
+
+        <!--MODAL ESQUECEU SENHA!!-->
+        <div class="modal fade" id="esqueceuSenhaModal" tabindex="-1" aria-labelledby="esqueceuSenhaModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="esqueceuSenhaModalLabel">Redefinir Senha</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                    <div class="alert alert-success d-none" id="successAlert" role="alert">
-                        Senha redefinida com sucesso!
+                    <div class="modal-body">
+                        <div class="alert alert-warning d-none" id="warningAlert" role="alert">
+                            As senhas não coincidem!
+                        </div>
+                        <div class="alert alert-success d-none" id="successAlert" role="alert">
+                            Senha redefinida com sucesso!
+                        </div>
+                        <div class="mb-3">
+                            <label for="novaSenha" class="form-label">Digite sua nova senha</label>
+                            <input type="password" class="form-control" id="novaSenha" name="novaSenha" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="confirmaSenha" class="form-label">Confirme sua senha</label>
+                            <input type="password" class="form-control" id="confirmaSenha" name="confirmaSenha"
+                                required>
+                        </div>
                     </div>
-                    <div class="mb-3">
-                        <label for="novaSenha" class="form-label">Digite sua nova senha</label>
-                        <input type="password" class="form-control" id="novaSenha" required>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                        <button type="button" class="btn btn-primary" id="salvarSenha">Salvar Senha</button>
                     </div>
-                    <div class="mb-3">
-                        <label for="confirmaSenha" class="form-label">Confirme sua senha</label>
-                        <input type="password" class="form-control" id="confirmaSenha" required>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-primary" id="salvarSenha">Salvar Senha</button>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!--MODAL CADASTRO!!-->
-    <div class="modal fade" id="cadastroModal" tabindex="-1" role="dialog" aria-labelledby="cadastroModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="cadastroModalLabel">Cadastro</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form id="cadastroForm">
+        <!--MODAL CADASTRO!!-->
+        <div class="modal fade" id="cadastroModal" tabindex="-1" role="dialog" aria-labelledby="cadastroModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="cadastroModalLabel">Cadastro</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
                         <div class="form-group">
                             <label for="nomeCadastro">Nome</label>
-                            <input type="text" class="form-control" id="nomeCadastro" required>
+                            <input type="text" class="form-control" id="nomeCadastro" name="nome" required>
                         </div>
                         <div class="form-group">
                             <label for="loginCadastro">Login</label>
-                            <input type="text" class="form-control" id="loginCadastro" required>
+                            <input type="text" class="form-control" id="loginCadastro" name="login" required>
                         </div>
                         <div class="form-group">
                             <label for="emailCadastro">E-mail</label>
-                            <input type="text" class="form-control" id="emailCadastro" required>
+                            <input type="text" class="form-control" id="emailCadastro" name="email" required>
                         </div>
                         <div class="form-group">
                             <label for="senhaCadastro">Senha</label>
-                            <input type="password" class="form-control" id="senhaCadastro" required>
+                            <input type="password" class="form-control" id="senhaCadastro" name="senha" required>
                         </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-primary" id="confirmarCadastro">Confirmar</button>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                        <button type="button" class="btn btn-primary" id="confirmarCadastro">Confirmar</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-
-    <script>
-        function showAlert(message, type) {
-            const alertContainer = document.querySelector('.alert-container');
-            const alert = document.createElement('div');
-            alert.className = `alert alert-${type}`;
-            alert.role = 'alert';
-            alert.textContent = message;
-            alertContainer.appendChild(alert);
-            setTimeout(() => {
-                alert.remove();
-            }, 1000);
-        }
-
-        document.getElementById('salvarSenha').onclick = function () {
-            const novaSenha = document.getElementById('novaSenha').value;
-            const confirmaSenha = document.getElementById('confirmaSenha').value;
-
-            if (novaSenha === confirmaSenha && novaSenha !== "") {
-                $('#successAlert').removeClass('d-none');
-                setTimeout(() => {
-                    $('#successAlert').addClass('d-none');
-                    $('#esqueceuSenhaModal').modal('hide'); // Fecha o modal após o alerta
-                }, 1000);
-            } else {
-                $('#warningAlert').removeClass('d-none');
-            }
-        };
-
-        // Mantém o modal aberto se as senhas não coincidirem
-        $('#esqueceuSenhaModal').on('hide.bs.modal', function (e) {
-            const warningVisible = !$('#warningAlert').hasClass('d-none');
-            if (warningVisible) {
-                e.preventDefault(); // Cancela o fechamento do modal
-            }
-        });
-
-        document.getElementById('confirmarCadastro').onclick = function () {
-            const nome = document.getElementById('nomeCadastro').value;
-            const login = document.getElementById('loginCadastro').value;
-            const email = document.getElementById('emailCadastro').value;
-            const senha = document.getElementById('senhaCadastro').value;
-
-            // Prossegue com o cadastro
-            fetch('cadastrar.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                body: new URLSearchParams({
-                    nome: nome,
-                    login: login,
-                    email: email,
-                    senha: senha
-                })
-            })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.status === 'success') {
-                        showAlert('Cadastro realizado com sucesso!', 'success');
-                        $('#cadastroModal').modal('hide'); // Fecha o modal
-                    } else {
-                        showAlert('Erro: ' + data.message, 'warning');
-                    }
-                })
-                .catch(error => {
-                    showAlert('Erro: ' + error.message, 'danger');
-                });
-        };
-
-        document.getElementById('loginForm').onsubmit = function (event) {
-            event.preventDefault(); // Impede o envio padrão do formulário
-
-            const login = document.getElementById('login').value;
-            const senha = document.getElementById('senha').value;
-
-            // Envia uma requisição ao servidor para verificar as credenciais
-            fetch('login.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                body: new URLSearchParams({
-                    login: login,
-                    senha: senha
-                })
-            })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.status === 'success') {
-                        // Armazena a autenticação
-                        localStorage.setItem('authenticated', 'true');
-                        // Redireciona para uma página de sucesso
-                        window.location.href = 'inicio';
-                    } else {
-                        showAlert('Login ou senha inválidos.', 'danger');
-                    }
-                })
-                .catch(error => {
-                    showAlert('Erro: ' + error.message, 'danger');
-                });
-        };
-
-       
-
-    </script>
+    </form>
+    <script src="/js/login.js"></script>
 </body>
-
-<!--Prompt do Chat GPT: faça um session com middleware que verifique seu o usuario está "logado=true" e faz um SelectQuery no banco de dados "usuario" do postgresql,caso logado esteja true e se todos os campos baterem e forem idênticos,como por exemplo password_verify para verificar se a senha é a mesma,ele estará logado na página "inicio.html",e caso ele queira voltar pra tela de login,só conseguirá voltar pra essa tela caso clique no botão "Sair",e que,caso clique para voltar em seu navegador,ou dê CTRL F5,ele continuará na página "inicio.html"-->
 
 </html>
